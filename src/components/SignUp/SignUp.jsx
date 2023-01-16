@@ -34,8 +34,13 @@ const SignUp = () => {
         address: address,
         city: city,
         landMark: landMark,
-        AddressType: addressType
+        addressType: addressType,
+        cartModel: {
+            cartId: 0
+        }
     }
+
+    console.log(user);
 
 
     let navigate = useNavigate();
@@ -45,9 +50,9 @@ const SignUp = () => {
         e.preventDefault();
         axios.post("http://localhost:8087/UserPage/Register_New_User", user)
            .then((responce) => { toast.success(responce.data.message);
-            setTimeout(() => { navigate("/Login"); }, 6000);
+            setTimeout(() => { navigate("/Login"); }, 3000);
             })
-            .catch((error) => { toast.error(error.message) })
+            .catch((error) => { console.log(error) })
     };
 
   return (
@@ -183,9 +188,9 @@ const SignUp = () => {
                             onChange={(event) => {setAddressType(event.target.value)}}
                             required
                             fullWidth
-                            id="AddressType"
+                            id="addressType"
                             label="Address Type"
-                            name="AddressType"
+                            name="addressType"
                             autoComplete="off"
                         />
                     </Grid>

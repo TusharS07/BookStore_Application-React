@@ -17,9 +17,10 @@ const Login = () => {
     const [userData, setUserData] = useState({});
 
     let navigate = useNavigate();
+    let token = localStorage.getItem("Token");
 
-    /*useEffect (() => {
-        axios.get(`http://localhost:8087/UserPage/Get_Data/user?token=${localStorage.getItem("Token")}`)
+    useEffect (() => {
+        axios.get("http://localhost:8087/UserPage/Get_Data/user", token)
         .then((responce) => {
             console.log(responce.data.obj);
             const data = responce.data.obj;
@@ -27,7 +28,7 @@ const Login = () => {
             console.log(data);
         })
         .catch(error => console.log(error));
-    })*/
+    })
 
 
     const onChangeHandler = (e) => {
@@ -50,14 +51,14 @@ const Login = () => {
                  localStorage.setItem("Token", responce.data.obj);
                  console.log(localStorage.getItem("Token"))
                  toast.success("User Logged Successfully");
-                 /*if (userData.role === "Admin") {
+                 if (userData.role === "Admin") {
                     setTimeout(() => { navigate("/Admin"); }, 2000);
                  }
                  else {
                     setTimeout(() => { navigate("/"); }, 2000);
-                 }*/
+                 }
                })
-               .catch((error) => { toast.error(error.message) })
+               .catch((error) => { console.log(error) })
         }
     }
   return (
