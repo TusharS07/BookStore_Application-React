@@ -1,0 +1,97 @@
+.project {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow:wrap;
+    background-color: #7f2b31;
+    color: white;
+    padding-top: 1%;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+
+#myInput {
+    background-image: url('https://www.w3schools.com/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 32%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 12px;
+  }
+
+.projecticon {
+    margin-left: 10%; 
+    margin-right: 1%; 
+    margin-bottom: 1%;
+}
+
+.projectname {
+    margin-right: 5%;
+}
+
+.projectcart {
+    margin-left: 0%;
+    margin-right: 3%;
+}
+.loginbutton {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 12px;
+
+    margin-right: initial;
+    margin-left: initial;
+    height: min-content;
+}
+
+.signUpbutton {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 12px;
+
+    margin-top: 1.3px;
+    margin-right: initial;
+    margin-left: auto;
+    height: fit-content;
+}
+
+.logOutbutton{
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 12px;
+
+    margin-top: 1.3px;
+    margin-right: initial;
+    margin-left: initial;
+    height: fit-content;
+}
+
+text {
+    font-size: 14px;
+    font-weight: 100;
+    color: white;
+    font-style: inherit;
+}

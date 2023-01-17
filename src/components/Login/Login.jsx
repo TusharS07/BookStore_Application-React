@@ -43,7 +43,7 @@ const Login = () => {
                     setTimeout(() => { navigate("/"); }, 500);
                  }
                })
-               .catch((error) => { console.log(error.data) })
+               .catch((error) => { toast.error(error.response.data); })
         }
     }
   return (

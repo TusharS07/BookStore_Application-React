@@ -50,7 +50,7 @@ const SignUp = () => {
            .then((responce) => { toast.success(responce.data.message);
             setTimeout(() => { navigate("/Login"); }, 3000);
             })
-            .catch((error) => { console.log(error) })
+            .catch((error) => { toast.error(error.response.data); })
     };
 
   return (
