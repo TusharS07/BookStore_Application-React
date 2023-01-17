@@ -1,4 +1,4 @@
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Button, CssBaseline, Grid, Link, TextField, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -35,9 +35,7 @@ const SignUp = () => {
         city: city,
         landMark: landMark,
         addressType: addressType,
-        cartModel: {
-            cartId: 0
-        }
+        cartModel: {}
     }
 
     console.log(user);
@@ -68,7 +66,7 @@ const SignUp = () => {
             }}
         >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-                <LockOutlinedIcon />
+                <AccountCircleIcon />
             </Avatar>
             <Typography component="h1" variant="h6">
                 Sign Up
