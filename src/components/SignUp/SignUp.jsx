@@ -46,7 +46,7 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8087/UserPage/Register_New_User", user)
+        axios.post("http://localhost:8083/UserPage/Register_New_User", user)
            .then((responce) => { toast.success(responce.data.message);
             setTimeout(() => { navigate("/Login"); }, 3000);
             })

@@ -29,9 +29,10 @@ const Admin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
       console.log(BookData);
-      axios.post(`http://localhost:8087/BooksPage/Add_Books/Admin?token=${localStorage.getItem("Token")}`, BookData)
+      axios.post(`http://localhost:8083/BooksPage/Add_Books/Admin?token=${localStorage.getItem("Token")}`, BookData)
      .then((res) => {
         console.log(res.data);
+        console.log(profilePic);
         toast.success(res.data.message);
      })
      .catch((error) => {

@@ -10,11 +10,12 @@ import { toast } from 'react-toastify';
 const Header = () => {
 
     let navigate = useNavigate();
+    const [login, setLogin] = useState(false);
 
 
     const logOutHandler = () => {
         console.log(localStorage.getItem("Token"));
-        axios.post(`http://localhost:8087/UserPage/Logout?token=${localStorage.getItem("Token")}`)
+        axios.post(`http://localhost:8083/UserPage/Logout?token=${localStorage.getItem("Token")}`)
         .then((res) => {
             toast.success(res.data.message);
             localStorage.clear()
@@ -45,7 +46,7 @@ const Header = () => {
             <button onClick = {() => { navigate("/Login") }} className="loginbutton">Login</button>
             <button onClick = {logOutHandler} className="logOutbutton">Logout</button>
             <div className="projectcart">
-                <IconButton onClick = {() => { navigate("/Cart")}} aria-label="cart">
+                <IconButton hid onClick = {() => { navigate("/Cart")}} aria-label="cart">
                     <text>Cart</text>
                     <ShoppingCartOutlinedIcon />
                 </IconButton>

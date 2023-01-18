@@ -30,12 +30,12 @@ const Login = () => {
             alert("Please provide login details.")
         }
         else {
-            axios.post("http://localhost:8087/UserPage/Login", user)
+            axios.post("http://localhost:8083/UserPage/Login", user)
                .then((responce) => {
+                 toast.success(responce.data.message);
                  console.log(responce);
                  localStorage.setItem("Token", responce.data.obj[0]);
                  console.log(localStorage.getItem("Token"));
-                 toast.success(responce.data.message);
                  if (responce.data.obj[1] === "Admin") {
                     setTimeout(() => { navigate("/Admin"); }, 500);
                  }
