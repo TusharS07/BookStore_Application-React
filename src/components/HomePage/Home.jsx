@@ -1,16 +1,23 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Pagination, Stack } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardMedia } from '@mui/material';
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify';
 import Header from '../Header/Header';
 import './Home.css';
+import Pagination from '../pagination/Pagination';
+
+
 
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [login, setLogin] = useState(false);
+  const [showPerPage,setShowPerPage]=useState(8);
+  const [pagination,setPagination]=useState({start:0,end:showPerPage})
+
+  const onPaginationChange=(start,end)=>{
+    setPagination({start:start,end:end})
+  }
   
-
-
   useEffect (() => {
     fetchBooks();
     if (localStorage.getItem("Token") === null) {
@@ -19,8 +26,7 @@ const Home = () => {
     } else {
       setLogin(true)
       console.log(localStorage.getItem("Token"))
-    }
-    
+    } 
   }, [])
 
   const fetchBooks =() => {
@@ -48,7 +54,6 @@ const Home = () => {
     }
   }
 
-
   return (   
     <div>
       <Header/>
@@ -56,13 +61,13 @@ const Home = () => {
         <div className='container'>
           <div className='cardcontainer'>
             {
-              books.map((book) => {
+              books.length>0 ? books.slice(pagination.start,pagination.end).map((book) => {
                 return (
                   <Card key={book.bookId} className='card' sx={{ maxWidth: 200 }}>
                     <CardMedia
                       component="img"
                       height="140"
-                      image={book.profilePic}
+                      image="src/Uploads/3dPrinting.PNG"
                       alt="Image Not Available"
                       sx={{ objectFit: "contain" }}
                     ></CardMedia>
@@ -91,13 +96,11 @@ const Home = () => {
                     </CardActions>
                   </Card>
                 )
-              })
+              }): "No Books Avaikable Here"
             }
           </div>
           <div className='pagination'>
-            <Stack spacing={2}>
-              <Pagination count={Math.floor(books.length/4)+1} shape="rounded" />
-            </Stack>
+          <Pagination showPerPages={showPerPage} onPagination={onPaginationChange} totalPage={books.length}/>
           </div>
         </div>
       </div>

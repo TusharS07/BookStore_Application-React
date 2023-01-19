@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 const Header = () => {
 
     let navigate = useNavigate();
-    const [login, setLogin] = useState(false);
+    
 
 
     const logOutHandler = () => {
@@ -19,6 +19,7 @@ const Header = () => {
         .then((res) => {
             toast.success(res.data.message);
             localStorage.clear()
+            setTimeout(() => { navigate("/"); }, 2000);
         })
         .catch((error) => {
             toast.error(error.response.data);
@@ -39,18 +40,30 @@ const Header = () => {
         <header>
         <div className="project">
             <AutoStoriesIcon color="action" fontSize='large' className="projecticon" />
-            <label className="projectname">BookStore</label>
+                <label className="projectname" >BookStore</label>
             <input type="text" id='myInput' onKeyUp={searchBook} placeholder="Search for Book.." title="Type in a name"/>
 
-            <button onClick = {() => { navigate("/Signup") }} className="signUpbutton">REGISTER</button>
-            <button onClick = {() => { navigate("/Login") }} className="loginbutton">Login</button>
-            <button onClick = {logOutHandler} className="logOutbutton">Logout</button>
-            <div className="projectcart">
+            {localStorage.getItem("Token") === null &&
+                <button onClick = {() => { navigate("/Signup") }} className="signUpbutton">REGISTER</button>
+            }
+
+            {localStorage.getItem("Token") === null &&
+                <button onClick = {() => { navigate("/Login") }} className="loginbutton">Login</button>
+            }
+
+            {localStorage.getItem("Token") != null &&
+                <button onClick = {logOutHandler} className="logOutbutton">Logout</button>
+            }
+            
+            {localStorage.getItem("Token") != null &&
+                <div className="projectcart">
                 <IconButton hid onClick = {() => { navigate("/Cart")}} aria-label="cart">
                     <text>Cart</text>
                     <ShoppingCartOutlinedIcon />
                 </IconButton>
             </div>
+            }
+            
             
         </div>
         </header>

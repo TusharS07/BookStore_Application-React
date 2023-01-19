@@ -34,7 +34,7 @@
 
 .projectcart {
     margin-left: 0%;
-    margin-right: 3%;
+    margin-right: 7%;
 }
 .loginbutton {
     background-color: transparent;
@@ -48,8 +48,7 @@
     cursor: pointer;
     border-radius: 12px;
 
-    margin-right: initial;
-    margin-left: initial;
+    margin-right: 6%;
     height: min-content;
 }
 
@@ -64,9 +63,7 @@
     font-size: 16px;
     cursor: pointer;
     border-radius: 12px;
-
     margin-top: 1.3px;
-    margin-right: initial;
     margin-left: auto;
     height: fit-content;
 }
@@ -82,10 +79,8 @@
     font-size: 16px;
     cursor: pointer;
     border-radius: 12px;
-
     margin-top: 1.3px;
-    margin-right: initial;
-    margin-left: initial;
+    margin-left: auto;
     height: fit-content;
 }
 

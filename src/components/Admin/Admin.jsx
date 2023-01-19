@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import InputAdornment from '@mui/material/InputAdornment';
 import { toast, ToastContainer } from 'react-toastify';
 import axios from 'axios';
+import Header from '../Header/Header';
 
 const Admin = () => {
 
@@ -34,6 +35,7 @@ const Admin = () => {
         console.log(res.data);
         console.log(profilePic);
         toast.success(res.data.message);
+        document.getElementById("Add-books").reset();
      })
      .catch((error) => {
         toast.error(error.response.data);
@@ -45,6 +47,8 @@ const Admin = () => {
 
 
   return (
+    <div>
+    <Header/>
     <Container component= "main" maxWidth="md">
       <CssBaseline/>
       <Box
@@ -62,7 +66,7 @@ const Admin = () => {
         <Typography component="h1" variant="h6">
           Add Books
         </Typography>
-        <Box component="form" noValidate sx={{ mt : 1 }}>
+        <Box component="form" id='Add-books' noValidate sx={{ mt : 1 }}>
           <Grid container spacing={1}>
             <Grid item xs={12}>
               <TextField
@@ -153,6 +157,7 @@ const Admin = () => {
         <ToastContainer autoClose={2000} />
         </Box>  
     </Container>
+    </div>
   )
 }
 
