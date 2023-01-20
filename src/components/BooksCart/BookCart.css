@@ -1,0 +1,49 @@
+.cartContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+}
+
+.cartcontainerbody {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: right;
+    margin-top: 1px;
+    width: 70%;
+    height: 190px;
+}
+
+.cardContent {
+    text-align: left;
+    margin-left: 4%;
+    margin-top: 18px;
+
+}
+
+.cardAction {
+    display: flex;
+    margin-left: auto;
+    margin-right: inherit;
+}
+
+.countOfItems {
+    display: flex;
+}
+
+.countOfItems {
+    display: flex;
+    margin-top: 15px;
+}
+
+.countBox {
+    width: 5%;
+    padding: 5px 20px;
+    text-emphasis: none;
+}
+
+.count {
+    width: 25px;
+    text-align: center;
+}

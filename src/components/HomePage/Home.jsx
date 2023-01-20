@@ -67,7 +67,7 @@ const Home = () => {
                     <CardMedia
                       component="img"
                       height="140"
-                      image="src/Uploads/3dPrinting.PNG"
+                      image="./uploads/3dPrinting.PNG"
                       alt="Image Not Available"
                       sx={{ objectFit: "contain" }}
                     ></CardMedia>

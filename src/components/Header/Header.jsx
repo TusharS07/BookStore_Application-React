@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { IconButton } from '@mui/material';
 import './Header.css';
 import { toast } from 'react-toastify';
@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 const Header = () => {
 
     let navigate = useNavigate();
+    
     
 
 
@@ -40,7 +41,7 @@ const Header = () => {
         <header>
         <div className="project">
             <AutoStoriesIcon color="action" fontSize='large' className="projecticon" />
-                <label className="projectname" >BookStore</label>
+                <label className="projectname" onClick = {() => { navigate("/")}}>BookStore</label>
             <input type="text" id='myInput' onKeyUp={searchBook} placeholder="Search for Book.." title="Type in a name"/>
 
             {localStorage.getItem("Token") === null &&
@@ -57,9 +58,9 @@ const Header = () => {
             
             {localStorage.getItem("Token") != null &&
                 <div className="projectcart">
-                <IconButton hid onClick = {() => { navigate("/Cart")}} aria-label="cart">
+                <IconButton onClick = {() => { navigate("/Cart")}} aria-label="cart">
                     <text>Cart</text>
-                    <ShoppingCartOutlinedIcon />
+                        <ShoppingCartIcon />
                 </IconButton>
             </div>
             }
