@@ -14,6 +14,7 @@ const BookCart = () => {
     let navigate = useNavigate();
 
     const [cartBooks, setCartBooks] = useState([])
+    const [totalCartAmount, setTotalCartAmount] = useState(0)
 
 
     useEffect(() => {
@@ -31,7 +32,12 @@ const BookCart = () => {
       })
     }
 
-    
+    const findTotalCost = () => {
+      for (let i = 0; i < cartBooks.length; i++) {
+        setTotalCartAmount(totalCartAmount +  cartBooks[i].totalPrice)
+      }
+      console.log(totalCartAmount);
+    }
 
     const increaseBookQty= (bookId) => {
       axios.put(`http://localhost:8083/CartPage/IncreaseBookQty?bookId=${bookId}&token=${localStorage.getItem("Token")}`)
@@ -73,7 +79,6 @@ const BookCart = () => {
       <Header/>
       <div className='cartContainer'>
         {cartBooks.map((cartBook) => {
-          console.log(cartBook.books);
           return (
             <div className='cartcontainerbody'>
               <Card key={cartBook.cartBookId} className='card' sx={{ display: 'flex', marginBottom: '1%', marginTop: '1%', width: '75%', maxHeight: '90%' }}>
