@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import Header from '../Header/Header';
 import './Home.css';
 import Pagination from '../pagination/Pagination';
+import { ShoppingCartRounded } from '@mui/icons-material';
 
 
 
@@ -13,12 +14,14 @@ const Home = () => {
   const [login, setLogin] = useState(false);
   const [showPerPage,setShowPerPage]=useState(8);
   const [pagination,setPagination]=useState({start:0,end:showPerPage})
+  const[search, setSearch]= useState("")
 
   const onPaginationChange=(start,end)=>{
     setPagination({start:start,end:end})
   }
   
   useEffect (() => {
+    document.title = 'Book-Store Home';
     fetchBooks();
     if (localStorage.getItem("Token") === null) {
       setLogin(false)
@@ -34,7 +37,6 @@ const Home = () => {
     .then((response) => {
       setBooks(response.data.obj)
       console.log(response.data.obj)
-      console.log(books) 
     })
   }
 
@@ -46,7 +48,7 @@ const Home = () => {
         console.log(res)
       })
       .catch((err) => {
-        toast.error(err.response.data);
+        toast.error(err.data.data);
         console.log(err);
       })
     } else {
@@ -56,12 +58,20 @@ const Home = () => {
 
   return (   
     <div>
-      <Header/>
+      <Header></Header>
+      <input type="text" id='myInput' placeholder="Search for Book.." title="Type in a name" onChange={(event) => {setSearch(event.target.value)}}/>
+      
       <div className='containerbody'>
         <div className='container'>
           <div className='cardcontainer'>
             {
-              books.length>0 ? books.slice(pagination.start,pagination.end).map((book) => {
+              books.length>0 ? books.filter(book => {
+                if (search === " ") {
+                  return book;
+                } else if (book.bookName.toLowerCase().includes(search) || book.authorName.toLowerCase().includes(search) ){
+                  return book;
+                }
+              }).slice(pagination.start,pagination.end).map((book) => {
                 return (
                   <Card key={book.bookId} className='card' sx={{ maxWidth: 200 }}>
                     <CardMedia
@@ -91,7 +101,7 @@ const Home = () => {
                     </CardContent>
 
                     <CardActions>
-                      <Button disabled={book.bookQuantity === 0} onClick={() => addToCart(book.bookId)} size="small" variant="contained">Add To Cart</Button>
+                      <Button startIcon={<ShoppingCartRounded />} disabled={book.bookQuantity === 0} onClick={() => addToCart(book.bookId)} size="small" variant="contained">Add To Cart</Button>
                       <Button variant="outlined" size="small">WishList</Button>
                     </CardActions>
                   </Card>

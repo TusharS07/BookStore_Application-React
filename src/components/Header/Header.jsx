@@ -7,7 +7,7 @@ import { IconButton } from '@mui/material';
 import './Header.css';
 import { toast } from 'react-toastify';
 
-const Header = () => {
+const Header = (props) => {
 
     let navigate = useNavigate();
     
@@ -28,9 +28,7 @@ const Header = () => {
           });
     }
 
-    const searchBook= () => {
-
-    }
+    
 
     
     
@@ -42,7 +40,7 @@ const Header = () => {
         <div className="project">
             <AutoStoriesIcon color="action" fontSize='large' className="projecticon" />
                 <label className="projectname" onClick = {() => { navigate("/")}}>BookStore</label>
-            <input type="text" id='myInput' onKeyUp={searchBook} placeholder="Search for Book.." title="Type in a name"/>
+            
 
             {localStorage.getItem("Token") === null &&
                 <button onClick = {() => { navigate("/Signup") }} className="signUpbutton">REGISTER</button>

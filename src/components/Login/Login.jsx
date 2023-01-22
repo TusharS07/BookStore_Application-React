@@ -37,10 +37,10 @@ const Login = () => {
                  localStorage.setItem("Token", responce.data.obj[0]);
                  console.log(localStorage.getItem("Token"));
                  if (responce.data.obj[1] === "Admin") {
-                    setTimeout(() => { navigate("/Admin"); }, 500);
+                    setTimeout(() => { navigate("/Admin"); }, 800);
                  }
                  else {
-                    setTimeout(() => { navigate("/"); }, 500);
+                    setTimeout(() => { navigate("/"); }, 800);
                  }
                })
                .catch((error) => { toast.error(error.response.data); })

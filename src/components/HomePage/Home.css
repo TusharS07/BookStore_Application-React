@@ -26,6 +26,8 @@
 .cardcontainer {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 20px;
+    margin-left: 40px;
 }
 
 .card {
@@ -64,6 +66,19 @@
       padding: 6px;
       margin-bottom: 50%
 }
+
+#myInput {
+    background-image: url('https://www.w3schools.com/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 32%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 12px;
+  }
+
 
 
 

@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Header from '../Header/Header';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import './BookCart.css';
 import emptyCartImg from '../../assets/empty_cart.png';
 
@@ -18,6 +18,7 @@ const BookCart = () => {
 
 
     useEffect(() => {
+      document.title = 'Cart';
       fetchCartData();
     }, [])
 
@@ -30,19 +31,15 @@ const BookCart = () => {
       .catch((err) => {
         console.log(err.response.data)
       })
+      console.log(cartBooks.length)
     }
 
-    const findTotalCost = () => {
-      for (let i = 0; i < cartBooks.length; i++) {
-        setTotalCartAmount(totalCartAmount +  cartBooks[i].totalPrice)
-      }
-      console.log(totalCartAmount);
-    }
 
     const increaseBookQty= (bookId) => {
       axios.put(`http://localhost:8083/CartPage/IncreaseBookQty?bookId=${bookId}&token=${localStorage.getItem("Token")}`)
       .then((res) => {
-        toast.success(res.data.msg);
+        toast.success(res.data.message, {position: toast.POSITION.BOTTOM_CENTER} );
+        console.log(res.data)
         fetchCartData();
       })
       .catch((err) => {
@@ -53,7 +50,7 @@ const BookCart = () => {
     const decreaseBookQty= (bookId) => {
       axios.put(`http://localhost:8083/CartPage/DecreaseBookQty?bookId=${bookId}&token=${localStorage.getItem("Token")}`)
       .then((res) => {
-        toast.success(res.data.msg);
+        toast.success(res.data.message, {position: toast.POSITION.BOTTOM_CENTER});
         fetchCartData();
       })
       .catch((err) => {
@@ -65,7 +62,7 @@ const BookCart = () => {
       axios.delete(`http://localhost:8083/CartPage/Remove_Book_From_Cart?cartBookId=${id}&token=${localStorage.getItem("Token")}`)
       .then((res) => {
         console.log(res.data);
-        toast.success(res.data.msg);
+        toast.success(res.data.message, {position: toast.POSITION.BOTTOM_CENTER});
         fetchCartData();
     })
     .catch((err) => {
@@ -78,7 +75,8 @@ const BookCart = () => {
     <div>
       <Header/>
       <div className='cartContainer'>
-        {cartBooks.map((cartBook) => {
+        {cartBooks.length>0 ? (cartBooks.map((cartBook) => {
+          console.log(cartBooks.length);
           return (
             <div className='cartcontainerbody'>
               <Card key={cartBook.cartBookId} className='card' sx={{ display: 'flex', marginBottom: '1%', marginTop: '1%', width: '75%', maxHeight: '90%' }}>
@@ -121,12 +119,14 @@ const BookCart = () => {
               </Card>
             </div>
           );
-        })
-      }
-        
-            
+        })):(<img src={emptyCartImg} className="emptyCartImg"/>)
+      }{cartBooks.length>0 &&
+      <button class="place-order" onClick = {() => { navigate("/PlaceOrder") }}>
+        Place Order
+      </button> 
+      }      
       </div>
-      
+      <ToastContainer autoClose={2000} />  
     </div>
   )
 }
