@@ -56,11 +56,48 @@ const Home = () => {
     }
   }
 
+  const sorting = (e) => {
+    console.log(e.target.value);
+    if (e.target.value === "Asc") {
+      axios.get("http://localhost:8083/BooksPage/Sort_Books_By_Price_LowToHigh")
+      .then((res) => {
+        setBooks(res.data.obj);
+      })
+    }
+
+    if (e.target.value === "Dsc") {
+      axios.get("http://localhost:8083/BooksPage/Sort_Books_By_Price_HighToLow")
+      .then((res) => {
+        setBooks(res.data.obj);
+      })
+    }
+
+    if (e.target.value === "New") {
+      axios.get("http://localhost:8083/BooksPage/Sort_Books_By_Newest_Arrivals")
+      .then((res) => {
+        setBooks(res.data.obj);
+      })
+    }
+
+
+
+
+  }
+
   return (   
     <div>
       <Header></Header>
+      <div className='searchSortBar'>
+      <text className='bookText'>Books
+      </text>
       <input type="text" id='myInput' placeholder="Search for Book.." title="Type in a name" onChange={(event) => {setSearch(event.target.value)}}/>
-      
+      <select  className='selectBar' onChange={sorting}>
+        <option >Sort by Relevance</option>
+        <option value="Asc">Price: Low to High</option>
+        <option value="Dsc">Price: High to Low</option>
+        <option value="New">Newest Arrivals</option>  
+      </select>
+      </div>
       <div className='containerbody'>
         <div className='container'>
           <div className='cardcontainer'>

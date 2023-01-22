@@ -7,6 +7,8 @@
     border: 0px solid green;
 }
 
+
+
 .container {
     width: 80%;
     padding: 44px;
@@ -71,13 +73,32 @@
     background-image: url('https://www.w3schools.com/css/searchicon.png');
     background-position: 10px 10px;
     background-repeat: no-repeat;
-    width: 32%;
+    width: 30%;
     font-size: 16px;
     padding: 12px 20px 12px 40px;
     border: 1px solid #ddd;
     margin-bottom: 10px;
     border-radius: 12px;
-  }
+    margin-left: 18%;
+}
+
+.selectBar {
+    height: 40px;
+    margin-left: 0px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    margin-left: 10%;
+    border-radius: 12px;
+}
+
+.bookText {
+    font-size: 30px;
+    margin-top: 8px;
+    font-weight: bold;
+    color: black;
+    margin-left: 10%;
+
+}
 
 
 
