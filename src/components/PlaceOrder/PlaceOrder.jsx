@@ -16,6 +16,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import { ExpandMore } from '@mui/icons-material';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PlacedSuccessfull from '../../pages/Order/PlacedSuccessfull';
 
 
 const PlaceOrder = () => {
@@ -23,8 +24,10 @@ const PlaceOrder = () => {
 
     const [cartBooks, setCartBooks] = useState([]);
     const [userData, setUserData] = useState([]);
+    const [orderDetails, setOrderDetails] = useState([]);
     const [totalCartAmount, setTotalCartAmount] = useState(0);
     const [totalCartQty, setTotalCartQty] = useState(0);
+
 
     
     const [firstName, setFirstName] = useState("");
@@ -97,8 +100,9 @@ const PlaceOrder = () => {
         axios.post(`http://localhost:8083/OrderPage/placeOrder?token=${localStorage.getItem("Token")}`,shippingAddress)
         .then((res) => {
             toast.success(res.data.message, {position: toast.POSITION.TOP_CENTER} );
+            setOrderDetails(res.data.obj)
             console.log(res.data)
-            setTimeout(() => { navigate("/"); }, 10000);
+            setTimeout(() => { navigate("/OrderSuccessful"); }, 4000);
           })
           .catch((err) => {
             toast.error(err.response.data);
@@ -332,7 +336,7 @@ const PlaceOrder = () => {
                 </Accordion>
             </div>
         </div>
-        <ToastContainer autoClose={5000} />
+        <ToastContainer autoClose={2000} />
     </div>
   )
 }
