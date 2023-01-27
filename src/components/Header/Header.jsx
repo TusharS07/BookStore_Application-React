@@ -53,6 +53,10 @@ const Header = (props) => {
             {localStorage.getItem("Token") != null &&
                 <button onClick = {logOutHandler} className="logOutbutton">Logout</button>
             }
+
+            {localStorage.getItem("Token") != null &&
+                <button onClick = {() => { navigate("/Orders") }} className="orderbutton">Orders</button>
+            }
             
             {localStorage.getItem("Token") != null &&
                 <div className="projectcart">
