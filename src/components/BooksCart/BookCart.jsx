@@ -84,7 +84,7 @@ const BookCart = () => {
                   <CardMedia
                     component="img"
                     height="100px"
-                    image={cartBook.books.profilePic}
+                    image={`../../uploads/${cartBook.books.profilePic}`}
                     alt="Image not Available"
                     sx={{ objectFit: "contain", width: '150px' }} />
                 </div>
