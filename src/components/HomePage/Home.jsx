@@ -79,9 +79,6 @@ const Home = () => {
       })
     }
 
-
-
-
   }
 
   return (   
